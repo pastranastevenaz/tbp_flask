@@ -1,36 +1,22 @@
-from flask import *
+from flask import Flask
 app = Flask(__name__)
+
 @app.route('/')
-def home():
-    return render_template('home.html')
+def hello_world():
+    return 'Hello, World!'
 
-@app.route('/welcome')
-def welcome():
-    return render_template('welcome.html]')
-
-@app.route('/welcome', methods=['GET','POST'])
-def welcome():
-    return render_template('welcome.html')
-
-@app.route('/log', methods=['GET', 'POST'])
-def log():
-    error = None
-    if request.method == 'POST':
-        if request.form['username'] != 'admin' or request.form['password'] != 'admin':
-            return redirect(url_for('welcome'))
-    return render_template('log.html', error=error)
-
-if __name__ == '__main__':
-    app.run()
-
-
+# from flask import Flask
+# app = Flask(__name__)
+#
+#
+#
 # quarks = [{'name': 'up', 'charge': '+2/3'},
 #           {'name': 'down', 'charge': '-1/3'},
 #           {'name': 'charm', 'charge': '+2/3'},
 #           {'name': 'strange', 'charge': '-1/3'}]
-
-
-
+#
+#
+#
 # @app.route('/', methods=['GET'])
 # def hello_world():
 #     return jsonify({'message' : 'Hello, World!'})
