@@ -1,7 +1,7 @@
 import os
 import requests
 import json
-import yagmail
+
 from flask.json import jsonify
 from flask import Flask, request, render_template, url_for
 
