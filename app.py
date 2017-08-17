@@ -1,6 +1,7 @@
 import os
 import requests
 import json
+import yagmail
 from flask.json import jsonify
 from flask import Flask, request, render_template, url_for
 
@@ -29,6 +30,10 @@ def dnsshow():
     return render_template('dns.html',
         domain=request.form['domain'],
         a_name = a_name, a_ttl = a_ttl, a_type = a_type, a_value = a_value)
+
+@app.route("/exception", methods=['GET'])
+def exception():
+    return render_template('exception.html')
 
 @app.route("/troubleshoot")
 def troubleshoot():

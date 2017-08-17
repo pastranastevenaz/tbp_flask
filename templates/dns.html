@@ -13,7 +13,9 @@
     </style>
     <div id="dnssearch" class="container">
       <form action="/dnsshow" method="POST">
-        <input name="domain">
+        <!-- <input name="domain"> -->
+        <label for="domain">Domain</label>
+        <input placeholder="domain.com" name="domain" id="domain" type="text" class="validate">
         <input type="submit" value="Lookup">
       </form>
     </div>

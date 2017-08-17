@@ -1,0 +1,39 @@
+{% extends "layout.html" %}
+
+{% block content %}
+  <div class="container">
+    <div class="row">
+      <!-- <h1>This is the Exception!</h1> -->
+      <form class="col s12">
+        <div class="row">
+            <label for="your_name">Your Name</label>
+            <input id="your_name" type="text" class="validate">
+        </div>
+        <div class="row">
+            <label for="your_name">Your Supervisor</label>
+            <input id="your_name" type="text" class="validate">
+        </div>
+        <div class="row">
+            <label for="your_name">Exception Date</label>
+            <input id="your_name" type="text" class="datepicker">
+        </div>
+        <div class="row">
+            <label for="your_name">Start Time</label>
+            <input id="your_name" type="text" class="timepicker">
+        </div>
+        <div class="row">
+            <label for="your_name">End Time</label>
+            <input id="your_name" type="text" class="timepicker">
+        </div>
+
+        <div class="row">
+            <label for="your_name">Reason</label>
+            <textarea id="textarea1" class="materialize-textarea validate"></textarea>
+        </div>
+        <button class="btn waves-effect waves-light" type="submit" name="action">Submit
+          <i class="material-icons right">send</i>
+        </button>
+      </form>
+    </div>
+  </div>
+{% endblock %}
