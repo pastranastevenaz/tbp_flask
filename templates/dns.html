@@ -1,0 +1,42 @@
+{% extends "layout.html" %}
+
+{% block content %}
+    <style>
+      #dnscard{
+        border-style: solid;
+        padding-top: 1em;
+      }
+      .dns-type-heading{
+        font-size: 1.5em;
+        margin-bottom: 0.1em;
+      }
+    </style>
+    <div id="dnssearch" class="container">
+      <form action="/dnsshow" method="POST">
+        <input name="domain">
+        <input type="submit" value="Lookup">
+      </form>
+    </div>
+    {% if domain %}
+      <div id="dnscard" class="container">
+        <center><h5><strong>Domain: </strong>{{ domain }}</h5><br></center>
+
+        <!-- A RECORDS -->
+        <p class="dns-type-heading">@ Records</p>
+        <strong>Name: </strong>{{ a_name }} | <strong>TTL: </strong>{{ a_ttl }} | <strong>Type: </strong>{{ a_type }} | <strong>Value: </strong>{{ a_value }}
+
+        <!-- AAAA RECORDS -->
+
+        <!-- MX RECORDS -->
+
+        <!-- CNAME RECORDS -->
+
+        <!-- SOA LENGTH -->
+
+        <!-- TXT RECORDS -->
+
+        <!-- NS RECORDS -->
+      </div>
+    {% endif %}
+
+{% endblock %}
