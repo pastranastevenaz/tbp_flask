@@ -1,7 +1,34 @@
 {% extends "layout.html" %}
 
 {% block content %}
+<style>
+blockquote {
+  border-left: 4px solid #1976D2;
+  margin-left: 38%;
 
-    <h1>This is the homepage!</h1>
+  padding: 0.5em 10px;
+  height: 4em;
+}
+blockquote:before {
+  color: #ccc;
+  font-size: 4em;
+  line-height: 0.1em;
+  margin-right: 0.25em;
+  vertical-align: -0.4em;
+}
+blockquote p {
+  margin-left: -58%;
+  font-size: 1.3em;
+  /*display: inline;*/
+}
+    </style>
+    <center>
+      <br>
+      <img src="../static/img/tbp150.png" alt="tbp">
+      <blockquote>
+        <p>Teamname by Proxy</p>
+      </blockquote>
+
+    </center>
 
 {% endblock %}

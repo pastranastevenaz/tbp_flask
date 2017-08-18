@@ -5,4 +5,8 @@ Setup navigation. Setup severaal links in navbar. Rough draft of exception form 
 
 Considering going back to a sidebar view
 
-First task at next: add the logo to homepge
+First task at next: add the logo to homepage (DONE)
+
+Add page for documentation
+
+add meta tag for mobile nav color
