@@ -19,14 +19,15 @@
         <input type="submit" value="Lookup">
       </form>
     </div>
-    {% if domain %}
+    {% if all_a_records %}
       <div id="dnscard" class="container">
         <center><h5><strong>Domain: </strong>{{ domain }}</h5><br></center>
 
         <!-- A RECORDS -->
         <p class="dns-type-heading">@ Records</p>
-        <strong>Name: </strong>{{ a_name }} | <strong>TTL: </strong>{{ a_ttl }} | <strong>Type: </strong>{{ a_type }} | <strong>Value: </strong>{{ a_value }}
-
+        {% for v in all_a_records %}
+          <strong>Name: </strong>{{ v[0] }} | <strong>TTL: </strong>{{ a_ttl }} | <strong>Type: </strong>{{ a_type }} | <strong>Value: </strong>{{ a_value }}
+        {% endfor %}
         <!-- AAAA RECORDS -->
 
         <!-- MX RECORDS -->

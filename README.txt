@@ -9,4 +9,4 @@ First task at next: add the logo to homepage (DONE)
 
 Add page for documentation
 
-add meta tag for mobile nav color
+add meta tag for mobile nav color ()

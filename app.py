@@ -18,18 +18,31 @@ def hello():
 def dns():
     return render_template('dns.html')
 
-@app.route("/dnsshow", methods=['POST'])
+@app.route("/dnsshow", methods=['GET','POST'])
 def dnsshow():
-    resp = requests.get('http://dns-api.org/A/google.com')
-    a_data = resp.json()
-    a_name = a_data[0]['name']
-    a_ttl = a_data[0]['ttl']
-    a_type = a_data[0]['type']
-    a_value = a_data[0]['value']
-    # return str(a_data) + str(a_value)
-    return render_template('dns.html',
-        domain=request.form['domain'],
-        a_name = a_name, a_ttl = a_ttl, a_type = a_type, a_value = a_value)
+    if request.method == 'POST':
+        print(request.form['domain'])
+        # result=request.form.getlist('domain')
+        domain_prefix='http://dns-api.org/A/'
+        domain_suffix=request.form['domain']
+        domain_to_lookup=domain_prefix+domain_suffix
+        print(domain_to_lookup)
+        resp = requests.get(domain_prefix+domain_suffix)
+        print(resp.json())
+        all_a_records=[]
+        for a in resp.json():
+            all_a_records.append(a)
+        print(len(all_a_records))
+        # a_data
+        # a_name = a_data[0]['name']
+        # a_ttl = a_data[0]['ttl']
+        # a_type = a_data[0]['type']
+        # a_value = a_data[0]['value']
+        # return str(a_data) + str(a_value)
+        # return "a"
+        return render_template('dns.html',
+            all_a_records = all_a_records)
+            # a_name = a_name, a_ttl = a_ttl, a_type = a_type, a_value = a_value)
 
 @app.route("/exception", methods=['GET'])
 def exception():
