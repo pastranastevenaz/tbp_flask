@@ -26,10 +26,13 @@
         <!-- A RECORDS -->
         <p class="dns-type-heading">@ Records</p>
         {% for v in all_a_records %}
-          <strong>Name: </strong>{{ v[0] }} | <strong>TTL: </strong>{{ a_ttl }} | <strong>Type: </strong>{{ a_type }} | <strong>Value: </strong>{{ a_value }}
+          <strong>Name: </strong>{{ v['name'] }} | <strong>TTL: </strong>{{ v['ttl'] }} | <strong>Type: </strong>{{ v['type'] }} | <strong>Value: </strong>{{ v['value'] }}
         {% endfor %}
         <!-- AAAA RECORDS -->
-
+        <p class="dns-type-heading"AAAA Records</p>
+        {% for v in all_aaaa_records %}
+          <strong>Name: </strong>{{ v['name'] }} | <strong>TTL: </strong>{{ v['ttl'] }} | <strong>Type: </strong>{{ v['type'] }} | <strong>Value: </strong>{{ v['value'] }}
+        {% endfor %}
         <!-- MX RECORDS -->
 
         <!-- CNAME RECORDS -->

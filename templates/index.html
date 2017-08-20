@@ -2,10 +2,10 @@
 
 {% block content %}
 <style>
+
 blockquote {
   border-left: 4px solid #1976D2;
   margin-left: 38%;
-
   padding: 0.5em 10px;
   height: 4em;
 }
@@ -20,6 +20,34 @@ blockquote p {
   margin-left: -58%;
   font-size: 1.3em;
   /*display: inline;*/
+}
+
+@media (max-width: 620px) and (min-width: 500px){
+  blockquote {
+    margin-left: 32%;
+  }
+  blockquote p {
+    margin-left: -40%;
+  }
+}
+@media (max-width: 499px) and (min-width: 390px) {
+  blockquote {
+    margin-left: 30%;
+  }
+  blockquote p {
+    margin-left: -40%;
+  }
+}
+@media (max-width: 389px) {
+  body{
+    background-color: #222;
+  }
+  blockquote {
+    margin-left: 22%;
+  }
+  blockquote p {
+    margin-left: -30%;
+  }
 }
     </style>
     <center>

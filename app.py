@@ -22,17 +22,28 @@ def dns():
 def dnsshow():
     if request.method == 'POST':
         print(request.form['domain'])
-        # result=request.form.getlist('domain')
-        domain_prefix='http://dns-api.org/A/'
+        # A @ RECORD LOOPUP==================
+        a_domain_prefix='http://dns-api.org/A/'
         domain_suffix=request.form['domain']
-        domain_to_lookup=domain_prefix+domain_suffix
-        print(domain_to_lookup)
-        resp = requests.get(domain_prefix+domain_suffix)
-        print(resp.json())
+        domain_to_lookup=a_domain_prefix+domain_suffix
+        resp = requests.get(a_domain_prefix+domain_suffix)
         all_a_records=[]
         for a in resp.json():
             all_a_records.append(a)
-        print(len(all_a_records))
+        # print(len(all_a_records))
+        # =================================
+        # AAAA RECORD LOOKuP
+        aaaa_domain_prefix= 'http://dns-api.org/AAAA/'
+        resp = requests.get(aaaa_domain_prefix+domain_suffix)
+        all_aaaa_records=[]
+        print("The JSON RESPONSE IS: "+ resp.json())
+        for aaaa in resp.json():
+            all_aaaa_records.append(aaaa)
+        # =================================
+        # AAAA RECORD LOOKUP
+
+        # =================================
+        # AAAA RECORD LOOKUP
         # a_data
         # a_name = a_data[0]['name']
         # a_ttl = a_data[0]['ttl']
