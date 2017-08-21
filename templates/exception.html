@@ -1,37 +1,53 @@
 {% extends "layout.html" %}
 
 {% block content %}
+  <style>
+  #submit-button{
+    width: 100%;
+    background-color: #424242;
+  }
+  </style>
   <div class="container">
     <div class="row">
       <!-- <h1>This is the Exception!</h1> -->
-      <form class="col s12">
+      <form action"/" method="POST" class="col s12">
         <div class="row">
-            <label for="your_name">Your Name</label>
-            <input id="your_name" type="text" class="validate">
+            <label for="agent_name">Your Name</label>
+            <input name="agent_name" id="agent_name" type="text" class="validate">
         </div>
         <div class="row">
-            <label for="your_name">Your Supervisor</label>
-            <input id="your_name" type="text" class="validate">
+            <label for="agent_emai">Your Email</label>
+            <input placeholder="someone@email.com" name="agent_email" id="agent_email" type="email" class="validate">
         </div>
         <div class="row">
-            <label for="your_name">Exception Date</label>
-            <input id="your_name" type="text" class="datepicker">
+            <label for="sup_name">Your Supervisor</label>
+            <input name="sup_name" id="sup_name" type="text" class="validate">
         </div>
         <div class="row">
-            <label for="your_name">Start Time</label>
-            <input id="your_name" type="text" class="timepicker">
+            <label for="sup_emai">Supervisor Email</label>
+            <input placeholder="superisor@email.com" name="sup_email" id="sup_email" type="email" class="validate">
         </div>
         <div class="row">
-            <label for="your_name">End Time</label>
-            <input id="your_name" type="text" class="timepicker">
+            <label for="approved_by">Approved by</label>
+            <input name="approved_by" id="approved_by" type="text" class="validate">
         </div>
-
         <div class="row">
-            <label for="your_name">Reason</label>
-            <textarea id="textarea1" class="materialize-textarea validate"></textarea>
+            <label for="exception_date">Exception Date</label>
+            <input name="exception_date" id="exception_date" type="text" class="datepicker">
         </div>
-        <button class="btn waves-effect waves-light" type="submit" name="action">Submit
-          <i class="material-icons right">send</i>
+        <div class="row">
+            <label for="start_time">Start Time</label>
+            <input name="start_time" id="start_time" type="text" class="timepicker">
+        </div>
+        <div class="row">
+            <label for="end_time">End Time</label>
+            <input name="end_time" id="end_time" type="text" class="timepicker validate">
+        </div>
+        <div class="row">
+            <label for="reason">Reason</label>
+            <textarea name="reason" id="reason" class="materialize-textarea validate"></textarea>
+        </div>
+        <button id="submit-button" class="btn" type="submit" name="action">Submit
         </button>
       </form>
     </div>

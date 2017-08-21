@@ -21,13 +21,8 @@ def dns():
 
 @app.route("/dnsshow", methods=['GET','POST'])
 def dnsshow():
-    true = True
     if request.method == 'POST':
         domain_suffix=request.form['domain']
-        # if true:
-        #     error = 'Please enter a domain'
-        #     return redirect(url_for('dns'))
-        # else:
         try:
             # DECLARING EMPTY LISTS TO STORE THE KEY VALUE PAIRS THAT RETURN FROM THE HTTP RESPONSE
             all_a_records=[]
@@ -107,9 +102,33 @@ def dnsshow():
             error = 'Please enter a domain'
             return redirect(url_for('dns'))
                 # a_name = a_name, a_ttl = a_ttl, a_type = a_type, a_value = a_value)
-@app.route("/exception", methods=['GET'])
+@app.route("/exception", methods=['GET', 'POST'])
 def exception():
-    return render_template('exception.html')
+    if request.method == 'POST':
+        # GET ALL VALUES FROM FORM
+        agent_name=request.form['agent_name']
+        agent_email=request.form['agent_email']
+        sup_name=request.form['sup_name']
+        sup_email=request.form['sup_email']
+        approved_by=request.form['approved_by']
+        exception_date=request.form['exception_date']
+        start_time=request.form['start_time']
+        end_time=request.form['end_time']
+        reason = request.form['reason']
+        print(str(agent_name))
+        print(str(agent_email))
+        print(str(sup_name))
+        print(str(sup_email))
+        print(str(approved_by))
+        print(str(exception_date))
+        print(str(start_time))
+        print(str(end_time))
+        print(str(reason))
+        
+        return render_template('exception.html')
+    elif request.method == "GET":
+        return render_template('exception.html')
+    else: return render_template('error.html')
 
 @app.route("/troubleshoot")
 def troubleshoot():
