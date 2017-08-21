@@ -8,9 +8,11 @@ idna==2.5
 itsdangerous==0.24
 Jinja2==2.9.6
 MarkupSafe==1.0
+pkg-resources==0.0.0
 requests==2.18.3
 six==1.10.0
 SQLAlchemy==1.1.13
 urllib3==1.22
 Werkzeug==0.12.2
 WTForms==2.1
+yagmail==0.9.179
