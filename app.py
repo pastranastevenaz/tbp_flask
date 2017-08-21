@@ -2,9 +2,10 @@ import os
 import requests
 import json
 import sys
-
+import yagmail
 from flask.json import jsonify
 from flask import Flask, request, render_template, url_for, flash, redirect
+
 
 app = Flask(__name__)
 app.secret_key = 'some_secret'
@@ -115,16 +116,23 @@ def exception():
         start_time=request.form['start_time']
         end_time=request.form['end_time']
         reason = request.form['reason']
-        print(str(agent_name))
-        print(str(agent_email))
-        print(str(sup_name))
-        print(str(sup_email))
-        print(str(approved_by))
-        print(str(exception_date))
-        print(str(start_time))
-        print(str(end_time))
-        print(str(reason))
-        
+        yag = yagmail.SMTP('exappv2', 'QWErty!@#456')
+        title = '<h2>Exception Submission</h2>'
+        sender = '<p><b>Agent: </b>{}</p>'.format(agent_name)
+        sender_email = '<p><b>Agent Email: </b>{}</p>'.format(agent_email)
+        manager = '<p><b>Manager: </b>{}</p>'.format(sup_name)
+        approved_by = '<p><b>Approved by: </b>{}</p>'.format(approved_by)
+        exception_date = '<p><b>Date: <b>{}</p>'.format(exception_date)
+        start_time = '<p><b>Start Time: </b>{}</p>'.format(start_time)
+        end_time = '<p><b>End Time: </b>{}</p>'.format(end_time)
+        reason = '<p><b>Reason: </b>{}</p>'.format(reason)
+        email_footer = '<br><p>=====================================</p></br><p>This email was automagically created and sent to {} using python 3, yag, and some coding judo.'.format(sup_name)
+        contents = [title, sender, sender_email, manager, exception_date, start_time, end_time, reason, email_footer]
+        # Send the email to the manager | Change the email in the functiion to the variable recipient
+        yag.send('pastrana.steven.az@gmail.com', 'Exception Submission', contents)
+        # Send the confirmation email
+        yag.send(agent_email, 'Exception Confirmation', 'Your exception was successfuly submited.')
+        flash('Submitted Exception')
         return render_template('exception.html')
     elif request.method == "GET":
         return render_template('exception.html')
@@ -134,6 +142,29 @@ def exception():
 def troubleshoot():
     return render_template('troubleshoot.html')
 
+@app.route("/feedback", methods=['GET', 'POST'])
+def feedback():
+    if request.method == 'POST':
+        fb_agent_email = request.form['fb_agent_email']
+        fb_agent_name = request.form['fb_agent_name']
+        feedback = request.form['feedback']
+        print(fb_agent_email)
+        print(fb_agent_name)
+        print(feedback)
+        yag = yagmail.SMTP('exappv2', 'QWErty!@#456')
+        title = '<h2>Feedback Submission</h2>'
+        sender = '<p><b>Agent: </b>{}</p>'.format(fb_agent_name)
+        sender_email = '<p><b>Agent Email: </b>{}</p>'.format(fb_agent_email)
+        feedback = '<p><b>Feedback: </b>{}</p>'.format(feedback)
+        contents = [title, sender, sender_email, feedback]
+        default_reply= '<p>Thanks for the feedback. Your submission will go a long way towards making this project a better resource for everyone that uses it</p>'
+        yag.send('steven.antonio.dev@gmail.com', 'TBP Feedback Submission', contents)
+        yag.send(fb_agent_email, 'Thanks you for your feedback', default_reply)
+        # flash('Feedback Sent')
+        return render_template('feedback.html')
+    elif request.method == 'GET':
+        return render_template('feedback.html')
+    else: return render_template('error.html')
 @app.route("/echo", methods=['POST'])
 def echo():
     return render_template('echo.html', text=request.form['text'])
