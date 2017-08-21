@@ -2,38 +2,124 @@
 
 {% block content %}
     <style>
+      #dnssearch{
+        margin-left: 10%;
+        margin-right: 10%;
+        margin-top: 8%;
+        margin-bottom: : 5%;
+      }
       #dnscard{
-        border-style: solid;
+        background-color: #F5F5F5;
+        border-radius: 7px;
+        margin-left: 10%;
+        margin-right: 10%;
+        margin-bottom: 6%;
         padding-top: 1em;
+        padding-left: 2em;
+        padding-bottom: 2em;
+        -webkit-box-shadow: 1px 1px 3px 0px rgba(0,0,0,0.75);
+        -moz-box-shadow: 1px 1px 3px 0px rgba(0,0,0,0.75);
+        box-shadow: 1px 1px 3px 0px rgba(0,0,0,0.75);
       }
       .dns-type-heading{
         font-size: 1.5em;
         margin-bottom: 0.1em;
       }
+      #result-title{
+        color: #555;
+      }
+      #lookup-button{
+        width: 100% !important;
+        background-color: #424242;
+      }
+      .dns-type-heading{
+        margin-left: 2em;
+      }
+
     </style>
-    <div id="dnssearch" class="container">
+    <div id="dnssearch" class="">
       <form action="/dnsshow" method="POST">
         <!-- <input name="domain"> -->
         <label for="domain">Domain</label>
         <input placeholder="domain.com" name="domain" id="domain" type="text" class="validate">
-        <input type="submit" value="Lookup">
+        <input id="lookup-button" class="btn" type="submit" value="Lookup">
       </form>
     </div>
-    {% if all_a_records %}
-      <div id="dnscard" class="container">
-        <center><h5><strong>Domain: </strong>{{ domain }}</h5><br></center>
-
+    <br>
+    {% if all_a_records or all_aaaa_records or all_mx_records %}
+      <div id="dnscard" class="">
+        <center><h5 id="result-title"><strong>DNS Results for: </strong>{{ domain.upper() }}</h5></center>
         <!-- A RECORDS -->
         <p class="dns-type-heading">@ Records</p>
         {% for v in all_a_records %}
-          <strong>Name: </strong>{{ v['name'] }} | <strong>TTL: </strong>{{ v['ttl'] }} | <strong>Type: </strong>{{ v['type'] }} | <strong>Value: </strong>{{ v['value'] }}
+          <div class="row">
+              <div class="col s3"><strong>Name: </strong>{{ v['name'] }} </div>
+              <div class="col s2"><strong>TTL: </strong>{{ v['ttl'] }} </div>
+              <div class="col s2"><strong>Type: </strong>{{ v['type'] }} </div>
+              <div class="col s5"><strong>Value: </strong>{{ v['value'] }}</div></br>
+          </div>
         {% endfor %}
         <!-- AAAA RECORDS -->
-        <p class="dns-type-heading"AAAA Records</p>
+        <p class="dns-type-heading">AAAA Records</p>
         {% for v in all_aaaa_records %}
-          <strong>Name: </strong>{{ v['name'] }} | <strong>TTL: </strong>{{ v['ttl'] }} | <strong>Type: </strong>{{ v['type'] }} | <strong>Value: </strong>{{ v['value'] }}
+        <div class="row">
+            <div class="col s3"><strong>Name: </strong>{{ v['name'] }} </div>
+            <div class="col s2"><strong>TTL: </strong>{{ v['ttl'] }} </div>
+            <div class="col s2"><strong>Type: </strong>{{ v['type'] }} </div>
+            <div class="col s5"><strong>Value: </strong>{{ v['value'] }}</div></br>
+        </div>
         {% endfor %}
         <!-- MX RECORDS -->
+        <p class="dns-type-heading">MX Records</p>
+        {% for v in all_mx_records %}
+        <div class="row">
+            <div class="col s3"><strong>Name: </strong>{{ v['name'] }} </div>
+            <div class="col s2"><strong>TTL: </strong>{{ v['ttl'] }} </div>
+            <div class="col s2"><strong>Type: </strong>{{ v['type'] }} </div>
+            <div class="col s5"><strong>Value: </strong>{{ v['value'] }}</div></br>
+        </div>
+        {% endfor %}
+        <!-- CNAME RECORDS -->
+        <p class="dns-type-heading">CNAME Records</p>
+        {% for v in all_cn_records %}
+        <div class="row">
+            <div class="col s3"><strong>Name: </strong>{{ v['name'] }} </div>
+            <div class="col s2"><strong>TTL: </strong>{{ v['ttl'] }} </div>
+            <div class="col s2"><strong>Type: </strong>{{ v['type'] }} </div>
+            <div class="col s5"><strong>Value: </strong>{{ v['value'] }}</div></br>
+        </div>
+        {% endfor %}
+        <!-- SOA RECORDS ( Uncomment to enable SOA Records )-->
+        <!-- <p class="dns-type-heading">SOA Records</p> -->
+        <!-- {% for v in all_soa_records %} -->
+        <!-- <div class="row"> -->
+            <!-- <div class="col s3"><strong>Name: </strong>{{ v['name'] }} </div> -->
+            <!-- <div class="col s2"><strong>TTL: </strong>{{ v['ttl'] }} </div> -->
+            <!-- <div class="col s2"><strong>Type: </strong>{{ v['type'] }} </div> -->
+            <!-- <div class="col s5"><strong>Value: </strong>{{ v['value'] }}</div></br> -->
+        <!-- </div> -->
+        <!-- {% endfor %} -->
+        <!-- TXT RECORDS -->
+        <p class="dns-type-heading">TXT Records</p>
+        {% for v in all_txt_records %}
+        <div class="row">
+            <div class="col s3"><strong>Name: </strong>{{ v['name'] }} </div>
+            <div class="col s2"><strong>TTL: </strong>{{ v['ttl'] }} </div>
+            <div class="col s2"><strong>Type: </strong>{{ v['type'] }} </div>
+            <div class="col s5"><strong>Value: </strong>{{ v['value'] }}</div></br>
+        </div>
+        {% endfor %}
+        <!-- NAMESERVER RECORDS -->
+        <p class="dns-type-heading">Nameserver Records</p>
+        {% for v in all_ns_records %}
+        <div class="row">
+            <div class="col s3"><strong>Name: </strong>{{ v['name'] }} </div>
+            <div class="col s2"><strong>TTL: </strong>{{ v['ttl'] }} </div>
+            <div class="col s2"><strong>Type: </strong>{{ v['type'] }} </div>
+            <div class="col s5"><strong>Value: </strong>{{ v['value'] }}</div></br>
+        </div>
+        {% endfor %}
+
 
         <!-- CNAME RECORDS -->
 
@@ -44,5 +130,12 @@
         <!-- NS RECORDS -->
       </div>
     {% endif %}
+    <script type="text/javascript">
+        // function preloader(){
+        //     document.getElementById("loading").style.display = "none";
+        //     document.getElementById("content").style.display = "block";
+        // }//preloader
+        // window.onload = preloader;
+    </script>
 
 {% endblock %}

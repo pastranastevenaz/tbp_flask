@@ -1,12 +1,13 @@
 import os
 import requests
 import json
+import sys
 
 from flask.json import jsonify
-from flask import Flask, request, render_template, url_for
+from flask import Flask, request, render_template, url_for, flash, redirect
 
 app = Flask(__name__)
-
+app.secret_key = 'some_secret'
 
 
 @app.route("/")
@@ -20,41 +21,92 @@ def dns():
 
 @app.route("/dnsshow", methods=['GET','POST'])
 def dnsshow():
+    true = True
     if request.method == 'POST':
-        print(request.form['domain'])
-        # A @ RECORD LOOPUP==================
-        a_domain_prefix='http://dns-api.org/A/'
         domain_suffix=request.form['domain']
-        domain_to_lookup=a_domain_prefix+domain_suffix
-        resp = requests.get(a_domain_prefix+domain_suffix)
-        all_a_records=[]
-        for a in resp.json():
-            all_a_records.append(a)
-        # print(len(all_a_records))
-        # =================================
-        # AAAA RECORD LOOKuP
-        aaaa_domain_prefix= 'http://dns-api.org/AAAA/'
-        resp = requests.get(aaaa_domain_prefix+domain_suffix)
-        all_aaaa_records=[]
-        print("The JSON RESPONSE IS: "+ resp.json())
-        for aaaa in resp.json():
-            all_aaaa_records.append(aaaa)
-        # =================================
-        # AAAA RECORD LOOKUP
-
-        # =================================
-        # AAAA RECORD LOOKUP
-        # a_data
-        # a_name = a_data[0]['name']
-        # a_ttl = a_data[0]['ttl']
-        # a_type = a_data[0]['type']
-        # a_value = a_data[0]['value']
-        # return str(a_data) + str(a_value)
-        # return "a"
-        return render_template('dns.html',
-            all_a_records = all_a_records)
-            # a_name = a_name, a_ttl = a_ttl, a_type = a_type, a_value = a_value)
-
+        # if true:
+        #     error = 'Please enter a domain'
+        #     return redirect(url_for('dns'))
+        # else:
+        try:
+            # DECLARING EMPTY LISTS TO STORE THE KEY VALUE PAIRS THAT RETURN FROM THE HTTP RESPONSE
+            all_a_records=[]
+            all_aaaa_records=[]
+            all_mx_records=[]
+            all_cn_records=[]
+            all_soa_records=[]
+            all_txt_records=[]
+            all_ns_records=[]
+            # DOMAIN PREFIXES
+            a_domain_prefix='http://dns-api.org/A/'
+            aaaa_domain_prefix = 'http://dns-api.org/AAAA/'
+            mx_domain_prefix='http://dns-api.org/MX/'
+            cn_domain_prefix='http://dns-api.org/CNAME/'
+            soa_domain_prefix='http://dns-api.org/SOA/'
+            txt_domain_prefix='http://dns-api.org/TXT/'
+            ns_domain_prefix='http://dns-api.org/NS/'
+            # @ RECORD LOOPUP==================
+            domain_to_lookup=a_domain_prefix+domain_suffix
+            resp = requests.get(domain_to_lookup)
+            for a in resp.json():
+                all_a_records.append(a)
+            # =================================
+            # AAAA RECORD LOOKuP
+            domain_to_lookup = aaaa_domain_prefix+domain_suffix
+            resp = requests.get(domain_to_lookup)
+            print("finished the second lookup")
+            for aaaa in resp.json():
+                all_aaaa_records.append(aaaa)
+            # =================================
+            # MX RECORD LOOKUP
+            domain_to_lookup=mx_domain_prefix+domain_suffix
+            resp=requests.get(domain_to_lookup)
+            print("finished the 3rd lookup")
+            for mx in resp.json():
+                all_mx_records.append(mx)
+            # =================================
+            # CNAME RECORD LOOKUP
+            domain_to_lookup=cn_domain_prefix+domain_suffix
+            resp=requests.get(domain_to_lookup)
+            print("finished the 4th lookup")
+            for cn in resp.json():
+                all_cn_records.append(cn)
+            # =================================
+            # SOA RECORD LOOKUP
+            domain_to_lookup=soa_domain_prefix+domain_suffix
+            resp=requests.get(domain_to_lookup)
+            print("finished the 5th lookup")
+            for soa in resp.json():
+                all_soa_records.append(soa)
+            # =================================
+            # TXT RECORD LOOKUP
+            domain_to_lookup=txt_domain_prefix+domain_suffix
+            resp=requests.get(domain_to_lookup)
+            print("finished the sixth lookup")
+            for txt in resp.json():
+                all_txt_records.append(txt)
+            # =================================
+            # NAMESERVER RECORD LOOKUP
+            domain_to_lookup=ns_domain_prefix+domain_suffix
+            resp=requests.get(domain_to_lookup)
+            print("finished the 7th lookup")
+            for ns in resp.json():
+                all_ns_records.append(ns)
+            return render_template('dns.html',
+                all_a_records = all_a_records,
+                all_aaaa_records = all_aaaa_records,
+                all_mx_records = all_mx_records,
+                all_cn_records = all_cn_records,
+                all_soa_records = all_soa_records,
+                all_txt_records = all_txt_records,
+                all_ns_records = all_ns_records,
+                domain = domain_suffix)
+        except:
+            e = sys.exc_info()[0]
+            flash('Please enter a domain')
+            error = 'Please enter a domain'
+            return redirect(url_for('dns'))
+                # a_name = a_name, a_ttl = a_ttl, a_type = a_type, a_value = a_value)
 @app.route("/exception", methods=['GET'])
 def exception():
     return render_template('exception.html')

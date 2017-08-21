@@ -20,11 +20,23 @@
         max-width: 500px;
         padding-top: 100px;
       }
+      .flashes{
+        color: red;
+      }
       h2 {color: red;}
     </style>
   </head>
   <body>
     {% include 'nav.html' %}
+    {% with messages = get_flashed_messages() %}
+      {% if messages %}
+        <ul class=flashes>
+        {% for message in messages %}
+          <center><li>{{ message }}</li></center>
+        {% endfor %}
+        </ul>
+      {% endif %}
+    {% endwith %}
 
     {% block content %}
     {% endblock %}
@@ -57,5 +69,6 @@
          });
       })
     </script>
+
   </body>
 </html>
