@@ -13,6 +13,7 @@
     <!-- <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.100.1/css/materialize.min.css"> -->
     <link href="{{ url_for('static', filename='css/materialize.css') }}" rel="stylesheet">
 
+    <!-- MATERIAL ICONS -->
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 
     <style type="text/css">
@@ -48,6 +49,7 @@
       $( document ).ready(function(){
         $(".button-collapse").sideNav();
         $('ul.tabs').tabs();
+        $('.modal').modal();
         $('.datepicker').pickadate({
            selectMonths: true, // Creates a dropdown to control month
            selectYears: 15, // Creates a dropdown of 15 years to control year,

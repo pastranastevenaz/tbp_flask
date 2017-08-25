@@ -6,9 +6,15 @@ Setup navigation. Setup severaal links in navbar. Rough draft of exception form 
 ### 8-25-17-2am:
 Setup PG locally and on Heroku
 
+### 8-25-17-3:29am:
+Added Icons to sidebar
+Added weather link and modal
+
 #### DONE
 First task at next: add the logo to homepage (DONE)
 add meta tag for mobile nav color (DONE)
+
+##Todo
 
 #### MAJOR
 
