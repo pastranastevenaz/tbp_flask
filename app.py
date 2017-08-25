@@ -8,11 +8,12 @@ import os
 from flask.json import jsonify
 from flask import Flask, request, render_template, url_for, flash, redirect, session, abort
 from flask_sqlalchemy  import SQLAlchemy
-import pymysql
+
 # pymysql.install_as_MySQLdb()
 
 app = Flask(__name__)
-app.config['SQLALCHEMY_DATABASE_URI'] = os.environ['CLEARDB_DATABASE_URL']
+app.config['SQLALCHEMY_DATABASE_URI'] = os.environ['DATABASE_URL']
+# app.config['SQLALCHEMY_DATABASE_URI'] = 'postgresql://myadmin:QWert!@345@localhost/project1'
 # app.config['SQLALCHEMY_DATABASE_URI'] =
 db = SQLAlchemy(app)
 app.secret_key = 'some_secret'
@@ -63,7 +64,7 @@ class Category(db.Model):
 @app.route("/")
 def hello():
     # return "Hello world!"
-    print(os.environ['CLEARDB_DATABASE_URL'])
+    # print(os.environ['CLEARDB_DATABASE_URL'])
     return render_template('index.html')
 
 @app.route("/dns")
