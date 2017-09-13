@@ -38,25 +38,51 @@
 </style>
 <div class="tabs-container">
   <ul id="tabs-swipe-demo" class="tabs">
-    <!-- <center> -->
-      <li class="tab col s3"><a class="active" href="#test-swipe-1">Refund</a></li>
-      <li class="tab col s3"><a href="#test-swipe-2">Coaching OP</a></li>
-      <li class="tab col s3"><a href="#test-swipe-3">Reciept Move</a></li>
-    <!-- </center> -->
+    <div class="row">
+      <li class="tab col s4"><a class="active" href="#test-swipe-1">Refund</a></li>
+      <li class="tab col s4"><a href="#test-swipe-2">Coaching OP</a></li>
+      <li class="tab col s4"><a href="#test-swipe-3">Reciept Move</a></li>
+    </div>
   </ul>
   <br>
   <div id="tab-field">
+
     <div id="test-swipe-1" class="col s12">
 
       <div id="refund-container" class="">
-        <center><h4 id="feedback-title">Refund</h4></center><br>
+        <center><h4 id="feedback-title">Refund</h4></center>
+
         <div class="row">
-          <!-- <h1>This is the Exception!</h1> -->
           <form method="POST" class="col s12">
             <div class="row">
               <label for="product">Product being cancelled</label>
               <input name="product" id="product" type="text" class="autocomplete">
             </div>
+
+            <div class="row">
+              <div class="input-field">
+                <select name="refund-supervisor">
+                  <option value=""></option>
+                  <option value="tjohnsey@godaddy.com">Tyler Johnsey</option>
+                  <option value="kagyeman@godaddy.com">Kashay Agyeman</option>
+                  <option value="aazzabi@godaddy.com">Amir Azzabi</option>
+                  <option value="efuller@godaddy.com">Edward Fuller</option>
+                  <option value="efearing@godaddy.com">Edward Fearing</option>
+                  <option value="ifrater@godaddy.com">Iain Frater</option>
+                  <option value="zhuether@godaddy.com">Zane Huether</option>
+                  <option value="gjewell@godaddy.com">Geoff Jewell</option>
+                  <option value="ahuckins@godaddy.com">Amber Junk</option>
+                  <option value="blignoski@godaddy.com">Brandon Lignoski</option>
+                  <option value="emayoral@godaddy.com">Enrique Mayoral</option>
+                  <option value="knaegele@godaddy.com">Kevin Naegele</option>
+                  <option value="gsinohui@godaddy.com">Gabriel Sinohui</option>
+                  <option value="shwahl@godaddy.com">Steve Wahl</option>
+                </select>
+                <label for="refund-supervisor">Your Supervisor</label>
+              </div>
+            </div>
+
+
             <div class="row">
                 <label for="reason">Reason for cancelling</label>
                 <input name="reason" id="reason" type="text" class="validate">
@@ -112,6 +138,31 @@
               <label for="your-name">Your Name</label>
               <input name="your-name" id="your-name" type="text" class="autocomplete">
             </div>
+
+
+            <div class="row">
+              <div class="input-field">
+                <select name="coaching-supervisor">
+                  <option value=""></option>
+                  <option value="tjohnsey@godaddy.com">Tyler Johnsey</option>
+                  <option value="kagyeman@godaddy.com">Kashay Agyeman</option>
+                  <option value="aazzabi@godaddy.com">Amir Azzabi</option>
+                  <option value="efuller@godaddy.com">Edward Fuller</option>
+                  <option value="efearing@godaddy.com">Edward Fearing</option>
+                  <option value="ifrater@godaddy.com">Iain Frater</option>
+                  <option value="zhuether@godaddy.com">Zane Huether</option>
+                  <option value="gjewell@godaddy.com">Geoff Jewell</option>
+                  <option value="ahuckins@godaddy.com">Amber Junk</option>
+                  <option value="blignoski@godaddy.com">Brandon Lignoski</option>
+                  <option value="emayoral@godaddy.com">Enrique Mayoral</option>
+                  <option value="knaegele@godaddy.com">Kevin Naegele</option>
+                  <option value="gsinohui@godaddy.com">Gabriel Sinohui</option>
+                  <option value="shwahl@godaddy.com">Steve Wahl</option>
+                </select>
+                <label for="coaching-supervisor">Your Supervisor</label>
+              </div>
+            </div>
+
             <div class="row">
                 <label for="coachable-agent">Coachable Agent</label>
                 <input name="coachable-agent" id="coachable-agent" type="text" class="validate">
@@ -142,7 +193,30 @@
               <label for="receipt-your-name">Your Name</label>
               <input name="receipt-your-name" id="receipt-your-name" type="text" class="autocomplete">
             </div>
-    
+
+            <div class="row">
+              <div class="input-field">
+                <select name="receipt-supervisor">
+                  <option value=""></option>
+                  <option value="tjohnsey@godaddy.com">Tyler Johnsey</option>
+                  <option value="kagyeman@godaddy.com">Kashay Agyeman</option>
+                  <option value="aazzabi@godaddy.com">Amir Azzabi</option>
+                  <option value="efuller@godaddy.com">Edward Fuller</option>
+                  <option value="efearing@godaddy.com">Edward Fearing</option>
+                  <option value="ifrater@godaddy.com">Iain Frater</option>
+                  <option value="zhuether@godaddy.com">Zane Huether</option>
+                  <option value="gjewell@godaddy.com">Geoff Jewell</option>
+                  <option value="ahuckins@godaddy.com">Amber Junk</option>
+                  <option value="blignoski@godaddy.com">Brandon Lignoski</option>
+                  <option value="emayoral@godaddy.com">Enrique Mayoral</option>
+                  <option value="knaegele@godaddy.com">Kevin Naegele</option>
+                  <option value="gsinohui@godaddy.com">Gabriel Sinohui</option>
+                  <option value="shwahl@godaddy.com">Steve Wahl</option>
+                </select>
+                <label for="receipt-supervisor">Your Supervisor</label>
+              </div>
+            </div>
+
             <div class="row">
               <div class="col s6">
                 <label for="original-receipt">Original Receipt</label>
