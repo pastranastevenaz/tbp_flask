@@ -160,7 +160,7 @@ def exception():
         # GET ALL VALUES FROM FORM
         agent_name=request.form['agent_name']
         agent_email=request.form['agent_email']
-        sup_name=request.form['sup_name']
+        # sup_name=request.form['sup_name']
         sup_email=request.form['sup_email']
         approved_by=request.form['approved_by']
         exception_date=request.form['exception_date']
@@ -171,27 +171,31 @@ def exception():
         title = '<h2>Exception Submission</h2>'
         sender = '<p><b>Agent: </b>{}</p>'.format(agent_name)
         sender_email = '<p><b>Agent Email: </b>{}</p>'.format(agent_email)
-        manager = '<p><b>Manager: </b>{}</p>'.format(sup_name)
+        # manager = '<p><b>Manager: </b>{}</p>'.format(sup_name)
         approved_by = '<p><b>Approved by: </b>{}</p>'.format(approved_by)
         exception_date = '<p><b>Date: <b>{}</p>'.format(exception_date)
         start_time = '<p><b>Start Time: </b>{}</p>'.format(start_time)
         end_time = '<p><b>End Time: </b>{}</p>'.format(end_time)
         reason = '<p><b>Reason: </b>{}</p>'.format(reason)
-        email_footer = '<br><p>=====================================</p></br><p>This email was automagically created and sent to {} using python 3, yag, and some coding judo.'.format(sup_name)
-        contents = [title, sender, sender_email, manager, exception_date, start_time, end_time, reason, email_footer]
+        email_footer = '<br><p>=====================================</p></br><p>This email was automagically created and sent using python 3, yag, and some coding judo.'
+        contents = [title, sender, sender_email, approved_by, exception_date, start_time, end_time, reason, email_footer]
         # Send the email to the manager | Change the email in the functiion to the variable recipient
-        yag.send('pastrana.steven.az@gmail.com', 'Exception Submission', contents)
-        # Send the confirmation email
-        yag.send(agent_email, 'Exception Confirmation', 'Your exception was successfuly submited.')
-        flash('Submitted Exception')
-        return render_template('exception.html')
+        if agent_name and agent_email and sup_email and approved_by and exception_date and start_time and end_time and reason:
+            yag.send(sup_email, 'Exception Submission', contents)
+            # Send the confirmation email
+            yag.send(agent_email, 'Exception Confirmation', 'Your exception was successfuly submited.')
+            flash('Submitted Exception')
+            return render_template('exception.html')
+        else:
+            flash("Error submitting exception! Verify all fields filled out")
+            return render_template('exception.html')
     elif request.method == "GET":
         return render_template('exception.html')
     else: return render_template('error.html')
 
-@app.route("/troubleshoot")
-def troubleshoot():
-    return render_template('troubleshoot.html')
+@app.route("/templates")
+def templates():
+    return render_template('templates.html')
 
 @app.route("/feedback", methods=['GET', 'POST'])
 def feedback():

@@ -1,0 +1,169 @@
+
+{% extends "layout.html" %}
+
+{% block content %}
+<style scoped>
+  .tabs-container{
+    margin-top: 4em;
+    margin-left: 5em;
+    margin-right: 5em;
+    margin-bottom: 3em;
+  }
+  #test-swipe-3,
+  #test-swipe-2,
+  #test-swipe-1{
+    height: 10em;
+  }
+  .tabs{
+    background-color: #eee;
+  }
+  .tabs .tab a{
+    color: #777;
+  }
+  .tabs .tab a:hover, .tabs .tab a.active{
+    color: #1976D3;
+  }
+  #tab-field{
+    background-color: #eee;
+    padding-top: 1em;
+    height: 92vh;
+  }
+  .tabs .indicator {
+    background-color: #1976D3;
+  }
+  #template-button{
+    width: 100% !important;
+    background-color: #424242;
+  }
+</style>
+<div class="tabs-container">
+  <ul id="tabs-swipe-demo" class="tabs">
+    <!-- <center> -->
+      <li class="tab col s3"><a class="active" href="#test-swipe-1">Refund</a></li>
+      <li class="tab col s3"><a href="#test-swipe-2">Coaching OP</a></li>
+      <li class="tab col s3"><a href="#test-swipe-3">Reciept Move</a></li>
+    <!-- </center> -->
+  </ul>
+  <br>
+  <div id="tab-field">
+    <div id="test-swipe-1" class="col s12">
+
+      <div id="refund-container" class="">
+        <center><h4 id="feedback-title">Refund</h4></center><br>
+        <div class="row">
+          <!-- <h1>This is the Exception!</h1> -->
+          <form method="POST" class="col s12">
+            <div class="row">
+              <label for="product">Product being cancelled</label>
+              <input name="product" id="product" type="text" class="autocomplete">
+            </div>
+            <div class="row">
+                <label for="reason">Reason for cancelling</label>
+                <input name="reason" id="reason" type="text" class="validate">
+            </div>
+            <div class="row">
+              <div class="input-field col s6">
+                <select name="term">
+                  <option value="annual">Annual</option>
+                  <option value="monthly">Monthly</option>
+                </select>
+                <label for="term">Annual or Monthly</label>
+              </div>
+              <div class="input-field col s6">
+                <select name="policy">
+                  <option value="yes">Yes</option>
+                  <option value="no">No</option>
+                </select>
+                <label for="policy">Within policy</label>
+              </div>
+            </div>
+            <div class="row">
+              <div class="input-field col s6">
+                <select name="free">
+                  <option value="yes">Yes</option>
+                  <option value="no">No</option>
+                </select>
+                <label for="free">Free products attached?</label>
+              </div>
+              <div class="input-field col s6">
+                <select name="cancelling">
+                  <option value=""></option>
+                  <option value="yes">Yes</option>
+                  <option value="no">No</option>
+                </select>
+                <label for="cancelling">If so, cancelling?</label>
+              </div>
+            </div>
+            <button id="template-button" class="btn" type="submit" name="action">Send</button>
+          </form>
+        </div>
+        </div>
+
+    </div>
+
+    <div id="test-swipe-2" class="col s12">
+
+      <div id="refund-container" class="">
+        <center><h4 id="feedback-title">Coaching OP</h4></center><br>
+        <div class="row">
+          <!-- <h1>This is the Exception!</h1> -->
+          <form method="POST" class="col s12">
+            <div class="row">
+              <label for="your-name">Your Name</label>
+              <input name="your-name" id="your-name" type="text" class="autocomplete">
+            </div>
+            <div class="row">
+                <label for="coachable-agent">Coachable Agent</label>
+                <input name="coachable-agent" id="coachable-agent" type="text" class="validate">
+            </div>
+            <div class="row">
+                <label for="coachable-agent-sup">Coachable Agent's Sup(if known)</label>
+                <input name="coachable-agent-sup" id="coachable-agent-sup" type="text" class="validate">
+            </div>
+            <div class="row">
+                <label for="happened">What Happened</label>
+                <textarea name="happened" id="happened" class="materialize-textarea validate"></textarea>
+            </div>
+            <button id="template-button" class="btn" type="submit" name="action">Send</button>
+          </form>
+        </div>
+        </div>
+
+    </div>
+
+    <div id="test-swipe-3" class="col s12">
+
+      <div id="refund-container" class="">
+        <center><h4 id="feedback-title">Receipt Move</h4></center><br>
+        <div class="row">
+          <!-- <h1>This is the Exception!</h1> -->
+          <form method="POST" class="col s12">
+            <div class="row">
+              <label for="receipt-your-name">Your Name</label>
+              <input name="receipt-your-name" id="receipt-your-name" type="text" class="autocomplete">
+            </div>
+    
+            <div class="row">
+              <div class="col s6">
+                <label for="original-receipt">Original Receipt</label>
+                <input name="original-receipt" id="original-receipt" type="text" class="validate">
+              </div>
+              <div class="col s6">
+                <label for="new-receipt">New Receipt</label>
+                <input name="new-receipt" id="new-receipt" type="text" class="validate">
+              </div>
+            </div>
+            <div class="row">
+                <label for="why-move">Why should this receipt be moved</label>
+                <textarea name="why-move" id="why-move" class="materialize-textarea validate"></textarea>
+            </div>
+            <button id="template-button" class="btn" type="submit" name="action">Send</button>
+          </form>
+        </div>
+        </div>
+
+    </div>
+  </div>
+</div>
+
+{% endblock %}

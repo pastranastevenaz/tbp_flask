@@ -17,7 +17,7 @@
     <center><h4 id="exception-title">Exception Form</h4></center><br>
     <div class="row">
       <!-- <h1>This is the Exception!</h1> -->
-      <form action"/" method="POST" class="col s12">
+      <form action"{{ url_for('exception') }}" method="POST" class="col s12">
         <div class="row">
             <label for="agent_name">Your Name</label>
             <input name="agent_name" id="agent_name" type="text" class="validate">
@@ -26,18 +26,67 @@
             <label for="agent_emai">Your Email</label>
             <input placeholder="someone@email.com" name="agent_email" id="agent_email" type="email" class="validate">
         </div>
+
         <div class="row">
-            <label for="sup_name">Your Supervisor</label>
-            <input name="sup_name" id="sup_name" type="text" class="validate">
+          <div class="input-field">
+            <select name="sup_email">
+              <option value=""></option>
+              <option value="tjohnsey@godaddy.com">Tyler Johnsey</option>
+              <option value="kagyeman@godaddy.com">Kashay Agyeman</option>
+              <option value="aazzabi@godaddy.com">Amir Azzabi</option>
+              <option value="efuller@godaddy.com">Edward Fuller</option>
+              <option value="efearing@godaddy.com">Edward Fearing</option>
+              <option value="ifrater@godaddy.com">Iain Frater</option>
+              <option value="zhuether@godaddy.com">Zane Huether</option>
+              <option value="gjewell@godaddy.com">Geoff Jewell</option>
+              <option value="ahuckins@godaddy.com">Amber Junk</option>
+              <option value="blignoski@godaddy.com">Brandon Lignoski</option>
+              <option value="emayoral@godaddy.com">Enrique Mayoral</option>
+              <option value="knaegele@godaddy.com">Kevin Naegele</option>
+              <option value="gsinohui@godaddy.com">Gabriel Sinohui</option>
+              <option value="shwahl@godaddy.com">Steve Wahl</option>
+            </select>
+            <label for="sup_email">Your Supervisor</label>
+          </div>
         </div>
+
+        <!-- <div class="row"> -->
+            <!-- <label for="sup_name">Your Supervisor</label> -->
+            <!-- <input name="sup_name" id="sup_name" type="text" class="validate"> -->
+        <!-- </div> -->
+        <!-- <div class="row"> -->
+            <!-- <label for="sup_emai">Supervisor Email</label> -->
+            <!-- <input placeholder="superisor@email.com" name="sup_email" id="sup_email" type="email" class="validate"> -->
+        <!-- </div> -->
+
+        <!-- <div class="row"> -->
+            <!-- <label for="approved_by">Approved by</label> -->
+            <!-- <input name="approved_by" id="approved_by" type="text" class="validate"> -->
+        <!-- </div> -->
+
         <div class="row">
-            <label for="sup_emai">Supervisor Email</label>
-            <input placeholder="superisor@email.com" name="sup_email" id="sup_email" type="email" class="validate">
+          <div class="input-field">
+            <select name="approved_by">
+              <option value="Tyler Johnsey">Tyler Johnsey</option>
+              <option value="Kashay Agyeman">Kashay Agyeman</option>
+              <option value="Amir Azzabi">Amir Azzabi</option>
+              <option value="Edward Fuller">Edward Fuller</option>
+              <option value="Edward Fearing">Edward Fearing</option>
+              <option value="Iain Frater">Iain Frater</option>
+              <option value="Zane Huether">Zane Huether</option>
+              <option value="Geoff Jewell">Geoff Jewell</option>
+              <option value="Amber Junk">Amber Junk</option>
+              <option value="Brandon Lignoski">Brandon Lignoski</option>
+              <option value="Enrique Mayoral">Enrique Mayoral</option>
+              <option value="Kevin Naegele">Kevin Naegele</option>
+              <option value="Gabriel Sinohui">Gabriel Sinohui</option>
+              <option value="Steve Wahl">Steve Wahl</option>
+            </select>
+            <label for="approved_by">Approved By</label>
+          </div>
         </div>
-        <div class="row">
-            <label for="approved_by">Approved by</label>
-            <input name="approved_by" id="approved_by" type="text" class="validate">
-        </div>
+
+
         <div class="row">
             <label for="exception_date">Exception Date</label>
             <input name="exception_date" id="exception_date" type="text" class="datepicker">
@@ -54,9 +103,27 @@
             <label for="reason">Reason</label>
             <textarea name="reason" id="reason" class="materialize-textarea validate"></textarea>
         </div>
-        <button id="submit-button" class="btn" type="submit" name="action">Submit
+        <button id="submit-button" onclick="modalOpen()" class="btn" type="submit" name="action">Submit
         </button>
       </form>
     </div>
   </div>
+
+  <!-- Modal Structure -->
+ <div id="modal1" class="modal">
+   <div class="modal-content">
+     <h4>Modal Header</h4>
+     <p>A bunch of text</p>
+   </div>
+   <div class="modal-footer">
+     <a href="#!" class="modal-action modal-close waves-effect waves-green btn-flat">Agree</a>
+   </div>
+ </div>
+
+  <script type="text/javascript">
+      function modalOpen(){
+        // alert("Thank you for your submission")
+        // $('.modal').modal();
+      }
+  </script>
 {% endblock %}

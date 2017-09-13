@@ -22,7 +22,7 @@
         padding-top: 100px;
       }
       .flashes{
-        color: red;
+        color: #d02410;
       }
       h2 {color: red;}
     </style>
@@ -33,7 +33,7 @@
       {% if messages %}
         <ul class=flashes>
         {% for message in messages %}
-          <center><li>{{ message }}</li></center>
+          <center><li><b>{{ message }}</b></li></center>
         {% endfor %}
         </ul>
       {% endif %}
@@ -50,6 +50,45 @@
         $(".button-collapse").sideNav();
         $('ul.tabs').tabs();
         $('.modal').modal();
+        $('select').material_select();
+        $('input.autocomplete').autocomplete({
+          data: {
+            "Linux CPanel": null,
+            "4GH Linux": null,
+            "Classic 2GH Linux": null,
+            "Windows Plesk": null,
+            "4GH Windows": null,
+            "Classic 2GH Windows": null,
+            "Managed Wordpress": null,
+            "GoCentral": null,
+            "Website Builder v6/v7": null,
+            "Workspace Email": null,
+            "Microsoft Email Essentials": null,
+            "Microsoft Online Essentials": null,
+            "Microsoft Business Premium": null,
+            "Microsoft Premium Security": null,
+            "GEM Email Marketing": null,
+            "Search Engine Visibility": null,
+            "Local Business Listing/Get Found": null,
+            "Smartline": null,
+            "SSL": null,
+            "Website Security": null,
+            "VPS / Virtual Private Server": null,
+            "Dedicated SServer": null,
+            "Business Hosting": null,
+            "Domain": null,
+            "Domain Transfer": null,
+            "Discount Domain Club": null,
+            "WPPS": null,
+            "Expert Service Request": null,
+            "Migration": null,
+          },
+          limit: 20, // The max amount of results that can be shown at once. Default: Infinity.
+          onAutocomplete: function(val) {
+            // Callback function when value is autcompleted.
+          },
+          minLength: 2, // The minimum length of the input for the autocomplete to start. Default: 1.
+        });
         $('.datepicker').pickadate({
            selectMonths: true, // Creates a dropdown to control month
            selectYears: 15, // Creates a dropdown of 15 years to control year,
