@@ -235,11 +235,13 @@ def productslogin():
 @app.route("/speedtest", methods=['POST', 'GET'])
 def speedtest():
     if request.method == 'POST':
-        hostname = 'github.com'
-
+        hostname = request.form['speed-domain']
+        # hostname="stevenanton.io"
+        # print(hostname)
         dns_start = time.time()
         ip_address = socket.gethostbyname(hostname)
         dns_end = time.time()
+        dns_time = (dns_end - dns_start) * 1000
 
         url = 'http://%s/' % ip_address
         req = urllib.request.Request(url)
@@ -248,20 +250,36 @@ def speedtest():
         handshake_start = time.time()
         stream = urllib.request.urlopen(req)
         handshake_end = time.time()
+        handshake_time = (handshake_end - handshake_start) * 1000
 
         data_start = time.time()
         data_length = len(stream.read())
         data_end = time.time()
+        data_time = (data_end - data_start) * 1000
 
         print("=====================================")
-        print("DOMAIN:             = github.com ")
+        print("DOMAIN:             = %s" % hostname)
         print('DNS time            = %.2f ms' % ((dns_end - dns_start) * 1000))
         print('HTTP handshake time = %.2f ms' % ((handshake_end - handshake_start) * 1000))
         print('HTTP data time      = %2.f ms' % ((data_end - data_start) * 1000))
         print('Data received       = %d bytes' % data_length)
         print("=====================================")
         print ("post method used")
-        return render_template("speedtest.html")
+        return render_template("speedtest.html",
+            dns_start = dns_start,
+            ip_address = ip_address,
+            dns_end = dns_end,
+            url = url,
+            req = req,
+            handshake_start = handshake_start,
+            stream = stream,
+            handshake_end = handshake_end,
+            data_start = data_start,
+            data_length = data_length,
+            data_end = data_end,
+            dns_time = dns_time,
+            handshake_time = handshake_time,
+            data_time = data_time)
     elif request.method == 'GET':
         return render_template("speedtest.html")
     else:

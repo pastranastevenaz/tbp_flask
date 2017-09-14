@@ -48,13 +48,18 @@
   <form action="/speedtest" method="POST">
     <!-- <input name="domain"> -->
     <label for="domain">Domain</label>
-    <input placeholder="domain.com" name="domain" id="domain" type="text" class="validate">
-    <input id="lookup-button" class="btn" type="submit" value="Tests">
+    <input placeholder="domain.com" name="speed-domain" id="speed-domain" type="text" class="validate">
+    <input id="lookup-button" class="btn" type="submit" value="Test">
   </form>
 </div>
 <br>
 <div id="speedtest-card">
-
+DNS Time: {{ dns_time }} ms <br>
+HTTP handshake time: {{ handshake_time}} ms <br>
+HTTP Data time: {{ data_time }} ms <br>
+Data recieved: {{ data_length }} bytes <br>
 </div>
+<script>
 
+</script>
 {% endblock %}
