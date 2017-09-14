@@ -1,0 +1,60 @@
+{% extends "layout.html" %}
+
+{% block content %}
+<style>
+
+  #speedtest-container{
+    margin-left: 10%;
+    margin-right: 10%;
+    margin-top: 8%;
+    margin-bottom: : 5%;
+  }
+  /*THE RESULTS SECTION CONTAINER*/
+  #speedtest-card{
+    background-color: #F5F5F5;
+    border-radius: 7px;
+    margin-left: 10%;
+    margin-right: 10%;
+    margin-bottom: 6%;
+    padding-top: 1em;
+    padding-left: 2em;
+    padding-bottom: 2em;
+    -webkit-box-shadow: 1px 1px 3px 0px rgba(0,0,0,0.75);
+    -moz-box-shadow: 1px 1px 3px 0px rgba(0,0,0,0.75);
+    box-shadow: 1px 1px 3px 0px rgba(0,0,0,0.75);
+  }
+  .dns-type-heading{
+    font-size: 1.5em;
+    margin-bottom: 0.1em;
+  }
+  #result-title{
+    color: #555;
+  }
+  #lookup-button{
+    width: 100% !important;
+    background-color: #424242;
+  }
+  .dns-type-heading{
+    margin-left: 2em;
+  }
+  .page-title{
+    font-size: 2.1em;
+    color: #444;
+  }
+
+</style>
+<div id="speedtest-container"class="">
+  <center><span class="page-title">DNS Lookup</span></center>
+  <form action="/speedtest" method="POST">
+    <!-- <input name="domain"> -->
+    <label for="domain">Domain</label>
+    <input placeholder="domain.com" name="domain" id="domain" type="text" class="validate">
+    <input id="lookup-button" class="btn" type="submit" value="Tests">
+  </form>
+</div>
+<br>
+<div id="speedtest-card">
+
+</div>
+
+{% endblock %}

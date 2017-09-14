@@ -5,6 +5,9 @@ from datetime import datetime
 import sys
 import yagmail
 import os
+import socket
+import time
+import urllib.request
 from flask.json import jsonify
 from flask import Flask, request, render_template, url_for, flash, redirect, session, abort
 from flask_sqlalchemy  import SQLAlchemy
@@ -229,9 +232,45 @@ def products():
 def productslogin():
     return "The login page"
 
+@app.route("/speedtest", methods=['POST', 'GET'])
+def speedtest():
+    if request.method == 'POST':
+        hostname = 'github.com'
+
+        dns_start = time.time()
+        ip_address = socket.gethostbyname(hostname)
+        dns_end = time.time()
+
+        url = 'http://%s/' % ip_address
+        req = urllib.request.Request(url)
+        req.add_header('Host', hostname)
+
+        handshake_start = time.time()
+        stream = urllib.request.urlopen(req)
+        handshake_end = time.time()
+
+        data_start = time.time()
+        data_length = len(stream.read())
+        data_end = time.time()
+
+        print("=====================================")
+        print("DOMAIN:             = github.com ")
+        print('DNS time            = %.2f ms' % ((dns_end - dns_start) * 1000))
+        print('HTTP handshake time = %.2f ms' % ((handshake_end - handshake_start) * 1000))
+        print('HTTP data time      = %2.f ms' % ((data_end - data_start) * 1000))
+        print('Data received       = %d bytes' % data_length)
+        print("=====================================")
+        print ("post method used")
+        return render_template("speedtest.html")
+    elif request.method == 'GET':
+        return render_template("speedtest.html")
+    else:
+        return render_template("error.html")
+
 @app.route("/echo", methods=['POST'])
 def echo():
     return render_template('echo.html', text=request.form['text'])
+
 
 
 if __name__ == "__main__":
